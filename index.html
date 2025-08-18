@@ -8,7 +8,7 @@
         :root {
             --primary-color: #ffffff;
             --secondary-color: #e0e0e0;
-            --glass-color: rgba(255, 255, 255, 0.1);
+            --glass-color: rgba(0, 0, 0, 0.21);
             --border-color: rgba(255, 255, 255, 0.2);
             --highlight-color: #4da6ff;
             --shadow-color: rgba(0, 0, 0, 0.2);
@@ -60,8 +60,8 @@
 
         .glass-card {
             background: var(--glass-color);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(21px);
+            -webkit-backdrop-filter: blur(21px);
             border-radius: 16px;
             border: 1px solid var(--border-color);
             padding: 2.5rem;
@@ -72,7 +72,7 @@
             margin: 0 0 1.5rem 0;
             font-size: 1.1rem;
             line-height: 1.7;
-            font-weight: 300;
+            font-weight: 500;
         }
         .glass-card p:last-child {
             margin-bottom: 0;
@@ -356,9 +356,10 @@
 }
 
 .ia-perspective-section .glass-card {
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(15px);
-    line-height: 1.8;
+    background: rgba(0, 0, 0, 0.21);
+    backdrop-filter: blur(21px);
+    line-height: 1.7;
+    font-weight: 500;
 }
 
 .ia-perspective-section p {
