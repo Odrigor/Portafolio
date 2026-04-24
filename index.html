@@ -4,6 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rodrigo Almonacid | Full-Stack Developer</title>
+
+    <!-- SEO -->
+    <meta name="description" content="Portafolio de Rodrigo Almonacid Sangmeister, desarrollador full-stack especializado en React, Node.js y sistemas en tiempo real. Proyectos con CORFO, OCR y geolocalización.">
+    <meta name="author" content="Rodrigo Almonacid Sangmeister">
+    <meta name="keywords" content="Full-Stack Developer, React, Node.js, JavaScript, Chile, Valdivia, OCR, Portafolio">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Rodrigo Almonacid | Full-Stack Developer">
+    <meta property="og:description" content="Desarrollador full-stack especializado en React, Node.js y sistemas en tiempo real. Mirá mis proyectos con CORFO, OCR y geolocalización.">
+    <meta property="og:image" content="./src/modal1.webp">
+    <meta property="og:locale" content="es_CL">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Rodrigo Almonacid | Full-Stack Developer">
+    <meta name="twitter:description" content="Desarrollador full-stack especializado en React, Node.js y sistemas en tiempo real.">
+    <meta name="twitter:image" content="./src/modal1.webp">
+
+    <link rel="icon" type="image/x-icon" href="./src/favicon.ico">
+
     <style>
         :root {
             --primary-color: #ffffff;
@@ -25,7 +46,6 @@
             min-height: 100vh;
         }
 
-        /* Sección superior (1 y 2) */
         .top-section {
             display: flex;
             justify-content: space-between;
@@ -36,15 +56,9 @@
             gap: 2rem;
         }
 
-        /* Estilos para la parte izquierda (1.html) */
-        .left-section {
-            flex: 1;
-        }
+        .left-section { flex: 1; }
 
-        .header {
-            text-align: left;
-            padding: 20px 0 40px 0;
-        }
+        .header { text-align: left; padding: 20px 0 40px 0; }
         .header h1 {
             margin: 0;
             font-size: 2.5rem;
@@ -67,6 +81,11 @@
             padding: 2.5rem;
             box-shadow: 0 8px 32px var(--shadow-color);
             margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
         }
         .glass-card p {
             margin: 0 0 1.5rem 0;
@@ -74,22 +93,12 @@
             line-height: 1.7;
             font-weight: 500;
         }
-        .glass-card p:last-child {
-            margin-bottom: 0;
-        }
+        .glass-card p:last-child { margin-bottom: 0; }
         .highlight {
             color: var(--highlight-color);
             font-weight: 500;
         }
-        .glass-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .glass-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
-        }
 
-        /* Estilos para la parte derecha (2.html) */
         .right-section {
             flex: 1;
             display: flex;
@@ -103,7 +112,7 @@
             height: 200px;
             perspective: 1000px;
         }
-        
+
         .flipping-image {
             width: 100%;
             height: 100%;
@@ -113,11 +122,11 @@
             border-radius: 50%;
             cursor: pointer;
         }
-        
+
         .image-container:hover .flipping-image {
-            transform: rotateY(180deg);
+            transform: rotateY(180deg) scale(1.1);
         }
-        
+
         .flipping-image-face {
             position: absolute;
             width: 100%;
@@ -127,24 +136,19 @@
             overflow: hidden;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
-        
+
         .flipping-image-front {
-            background-image: url('./src/Nick\ Sullo-Illustration.webp');
+            background-image: url('./src/nick-sullo.webp');
             background-size: cover;
             background-position: center;
         }
-        
+
         .flipping-image-back {
             background-size: cover;
             background-position: center;
             transform: rotateY(180deg);
         }
-        
-        .image-container:hover .flipping-image {
-            transform: rotateY(180deg) scale(1.1);
-        }
 
-        /* Sección de proyectos (3.html) */
         .projects-section {
             max-width: 1000px;
             margin: 0 auto;
@@ -159,7 +163,6 @@
             border-top: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        /* Grid de cards */
         .card-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -167,7 +170,6 @@
             width: 100%;
         }
 
-        /* Card */
         .card {
             position: relative;
             width: 100%;
@@ -178,9 +180,7 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.4);
             transition: transform 0.3s ease;
         }
-        .card:hover {
-            transform: scale(1.03);
-        }
+        .card:hover { transform: scale(1.03); }
         .card img {
             width: 100%;
             height: 100%;
@@ -188,80 +188,134 @@
             display: block;
         }
 
-        /* modals*/
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 10;
-    left: 0; top: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.6);
-    backdrop-filter: blur(4px);
-    overflow-y: auto; /* Permite scroll en todo el modal */
-    animation: fadeIn 0.3s ease;
-}
+        /* ============================================
+           MODAL — animaciones corregidas
+           ============================================ */
+        .modal {
+            position: fixed;
+            z-index: 10;
+            left: 0; top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            overflow-y: auto;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.35s ease, visibility 0s linear 0.35s;
+        }
 
-.modal-content {
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255,255,255,0.3);
-    border-radius: 15px;
-    padding: 30px;
-    max-width: 700px;
-    width: 90%;
-    margin: 50px auto; /* Centrado vertical con margen */
-    color: white;
-    backdrop-filter: blur(10px);
-    transform: scale(0.8);
-    animation: zoomIn 0.3s ease forwards;
-}
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transition: opacity 0.35s ease, visibility 0s linear 0s;
+        }
 
-.modal img {
-    width: 100%;
-    max-height: 300px;
-    object-fit: contain;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    display: block;
-}
+        .modal-content {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 24px;
+            padding: 30px;
+            max-width: 700px;
+            width: 90%;
+            margin: 50px auto;
+            color: white;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            opacity: 0;
+            transform: scale(0.9) translateY(20px);
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+                        opacity 0.3s ease;
+        }
 
-.modal-text-container {
-    max-height: 400px;
-    overflow-y: auto;
-    padding-right: 15px;
-    line-height: 1.7;
-}
+        .modal.active .modal-content {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
 
-.modal-text-container p {
-    margin-bottom: 1rem;
-}
+        .modal img {
+            width: 100%;
+            max-height: 300px;
+            object-fit: contain;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            display: block;
+        }
 
-/* Scrollbar personalizada */
-.modal-text-container::-webkit-scrollbar {
-    width: 6px;
-}
+        .modal h3 {
+            font-size: 1.5rem;
+            margin: 0 0 1.5rem 0;
+            font-weight: 700;
+        }
 
-.modal-text-container::-webkit-scrollbar-track {
-    background: rgba(255,255,255,0.1);
-    border-radius: 3px;
-}
+        .modal-section { margin-bottom: 1.5rem; }
 
-.modal-text-container::-webkit-scrollbar-thumb {
-    background: rgba(255,255,255,0.3);
-    border-radius: 3px;
-}
+        .modal-section h4 {
+            color: var(--highlight-color);
+            font-size: 1.1rem;
+            margin: 0 0 0.5rem 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
 
-.close {
-    position: fixed;
-    top: 30px;
-    right: 30px;
-    font-size: 2rem;
-    color: white;
-    cursor: pointer;
-    z-index: 11;
-}
+        .modal-section p {
+            margin: 0 0 0.8rem 0;
+            line-height: 1.7;
+        }
 
-        /* Sección de habilidades (4.html) */
+        .modal-section ul {
+            margin: 0.5rem 0;
+            padding-left: 1.2rem;
+            line-height: 1.8;
+        }
+
+        .modal-section ul li { margin-bottom: 0.4rem; }
+
+        .modal-text-container {
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 15px;
+            line-height: 1.7;
+        }
+
+        .modal-text-container::-webkit-scrollbar { width: 6px; }
+        .modal-text-container::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+        .modal-text-container::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 3px;
+        }
+
+        .close {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            z-index: 11;
+            background: rgba(0, 0, 0, 0.4);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease, transform 0.2s ease;
+            border: none;
+        }
+
+        .close:hover {
+            background: rgba(0, 0, 0, 0.7);
+            transform: scale(1.1);
+        }
+
         .skills-section {
             max-width: 1000px;
             margin: 0 auto;
@@ -275,19 +329,35 @@
             width: 100%;
         }
 
+        /* ============================================
+           SKILL CARDS — animación transform-only
+           ============================================ */
         .skill-card {
             position: relative;
             border-radius: 15px;
             overflow: hidden;
             cursor: pointer;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+                        box-shadow 0.4s ease,
+                        border-radius 0.4s ease;
+            will-change: transform;
         }
 
-        /* Hover solo si no está en zoom */
-        .skill-card:not(.zoomed):hover {
+        .skill-card:not(.expanded):hover {
             transform: scale(1.05);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.5);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .skill-card.expanded {
+            z-index: 100;
+            border-radius: 22px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+        }
+
+        .skill-card.expanded img {
+            object-fit: contain;
+            background-color: rgba(0, 0, 0, 0.3);
         }
 
         .skill-card img {
@@ -298,105 +368,95 @@
             transition: object-fit 0.3s ease;
         }
 
-        /* Zoom in */
-        .zoomed {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            width: 300px;
-            height: 300px;
-            transform: translate(-50%, -50%) scale(1.2);
-            z-index: 100;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
-            transition: transform 0.3s ease;
-        }
-
-        /* Cuando está ampliada, mostramos imagen completa */
-        .zoomed img {
-            object-fit: contain;
-            background-color: rgba(0,0,0,0.3);
-        }
-
-        /* Fondo oscuro */
         .overlay {
-            display: none;
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background: rgba(0,0,0,0.6);
+            background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
             z-index: 90;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.35s ease, visibility 0s linear 0.35s;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transition: opacity 0.35s ease, visibility 0s linear 0s;
         }
 
         footer {
             text-align: center;
             padding: 2rem;
             font-weight: 300;
-            opacity: 0.7;
+            opacity: 0.9;
         }
 
-        /* Responsive */
+        footer a {
+            color: var(--highlight-color);
+            text-decoration: none;
+            transition: opacity 0.2s ease;
+        }
+
+        footer a:hover {
+            opacity: 0.75;
+            text-decoration: underline;
+        }
+
+        footer .footer-links { margin-bottom: 0.5rem; }
+        footer .footer-links a { margin: 0 0.75rem; }
+
         @media (max-width: 768px) {
-            body {
-                background-attachment: fixed;
-            }
-            
+            body { background-attachment: fixed; }
             .top-section {
                 flex-direction: column;
                 align-items: center;
             }
-            .left-section, .right-section {
-                width: 100%;
-            }
-            .right-section {
-                margin-top: 2rem;
-            }
+            .left-section, .right-section { width: 100%; }
+            .right-section { margin-top: 2rem; }
         }
 
         .ia-perspective-section {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 2rem 4rem;
-}
-
-.ia-perspective-section .glass-card {
-    background: rgba(0, 0, 0, 0.21);
-    backdrop-filter: blur(21px);
-    line-height: 1.7;
-    font-weight: 500;
-}
-
-.ia-perspective-section p {
-    margin-bottom: 1.2rem;
-}
-
-@media (min-width: 769px) {
-        .right-section {
-            margin-top: 16rem;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem;
         }
-    }
+
+        .ia-perspective-section .glass-card {
+            background: rgba(0, 0, 0, 0.21);
+            backdrop-filter: blur(21px);
+            line-height: 1.7;
+            font-weight: 500;
+        }
+
+        .ia-perspective-section p { margin-bottom: 1.2rem; }
+
+        @media (min-width: 769px) {
+            .right-section { margin-top: 16rem; }
+        }
     </style>
 </head>
 <body>
-    <!-- Sección superior (1 y 2) -->
     <div class="top-section">
-        <!-- Parte izquierda (1.html) -->
         <div class="left-section">
             <header class="header">
                 <h1>Rodrigo Almonacid S.</h1>
-                <p>Full-Stack Developer Trainee</p>
+                <p>Full-Stack Developer</p>
             </header>
-            
+
             <div class="glass-card">
-                <p><span class="highlight">Estudiante de último semestre de Ingeniería Civil Informática</span> especializado en desarrollo full-stack con JavaScript, React y Node.js.</p>
-                
-                <p>He colaborado en proyectos trabajando en gestión de roles para una plataforma web, sistema de geolocalización en tiempo real para una empresa CORFO y ahora último un sistema de reconocimiento de patentes con tecnologías OCR.</p>
-                
+                <p>Soy <span class="highlight">estudiante de último semestre de Ingeniería Civil Informática</span>, especializado en desarrollo full-stack con JavaScript, React y Node.js.</p>
+
+                <p>He colaborado en proyectos de gestión de roles para una plataforma académica, geolocalización en tiempo real para una empresa con financiamiento CORFO, y recientemente en un sistema de reconocimiento de patentes con tecnologías OCR como proyecto de tesis.</p>
+
                 <p>Valoro el trabajo en equipo, el aprendizaje continuo y la construcción de software que genere impacto real.</p>
             </div>
         </div>
 
-        <!-- Parte derecha (2.html) -->
         <div class="right-section">
             <div class="image-container">
                 <div class="flipping-image">
@@ -407,245 +467,301 @@
         </div>
     </div>
 
-    <!-- Sección de proyectos (3.html) -->
     <div class="projects-section">
         <h2 class="section-title">Proyectos Destacados</h2>
         <div class="card-container">
-            <!-- Card 1 -->
-            <div class="card" 
-     data-img="./src/modal1.webp"
-     data-text="Módulo de Gestión de Usuarios - Plataforma de Indicadores Académicos
-
-Contexto: Desarrollé como parte de un equipo multidisciplinario de 30 personas un sistema integral de gestión de usuarios para Innoving 2030, con el objetivo de digitalizar y optimizar su proceso de recolección y análisis de datos académicos. La plataforma necesitaba manejar diferentes perfiles de usuario (entre 10-100 usuarios simultáneos) con roles específicos: recolectores de datos, analistas de métricas y administradores con acceso completo.
-
-Desafío: El cliente requería transformar un proceso manual y presencial de solicitud de datos académicos en una solución digital escalable que permitiera la gestión eficiente de diferentes niveles de acceso y la visualización de métricas en tiempo real.
-
-Rol y Responsabilidades: Asumí una doble función como Product Owner y Desarrollador Full Stack. Como PO, mantuve comunicación directa con el cliente, gestioné los requerimientos y prioricé el backlog del módulo. Como desarrollador, lideré un equipo de 5 personas implementando las funcionalidades core del sistema.
-
-Stack Tecnológico:
-- Frontend: React para interfaces dinámicas y responsivas
-- Backend: Node.js con APIs RESTful
-- Base de Datos: MySQL para gestión robusta de datos
-- Metodología: Scrum con sprints de 2 semanas
-
-Implementación Técnica:
-- Sistema de autenticación y autorización basado en roles con múltiples niveles de acceso
-- CRUD completo para gestión de usuarios y roles con validaciones avanzadas
-- Cifrado seguro de contraseñas implementando best practices de seguridad
-- Dashboard personalizado según perfiles de usuario con visualización de métricas
-- Integración de gráficos interactivos para seguimiento temporal de indicadores
-
-Resultados:
-✅ Entrega en tiempo y forma cumpliendo todas las especificaciones
-✅ Digitalización completa del proceso de recolección de datos académicos
-✅ Eliminación de gestión presencial mediante sistema de enlaces directos
-✅ Centralización de métricas con visualización en tiempo real y análisis histórico
-✅ Mejora significativa en la eficiencia operativa del cliente
-
-Impacto: La implementación transformó completamente el flujo de trabajo de Innoving 2030, permitiendo la automatización de procesos que anteriormente requerían coordinación presencial y generando una plataforma escalable para el análisis de datos académicos.">
-    <img src="./src/modal1.webp" alt="Experiencia 2023">
-</div>
-
-            <!-- Card 2 -->
-            <div class="card" 
-                data-img="./src/modal2.webp"
-                data-text="Plataforma de Monitoreo en Tiempo Real - Flota de Distribución de Gas
-
-Contexto: Lideré el desarrollo completo de una solución de software para GeoGesAnalytics, financiada con fondos CORFO, para resolver una problemática crítica de una empresa de distribución de gas con flota de 10-20 camiones. El desafío principal era prevenir el abuso de promociones por parte de los repartidores mediante el control preciso de ubicaciones de entrega y la optimización del acceso a datos operacionales.
-Desafío: La empresa cliente necesitaba transformar un sistema manual de verificación de entregas que tomaba horas en procesar, en una solución de monitoreo en tiempo real que permitiera validar instantáneamente las entregas legítimas y calcular distancias entre puntos de solicitud y entrega.
-Rol y Responsabilidades: Actué como Ingeniero de Software Full Stack con responsabilidades end-to-end: desde reuniones iniciales con GeoGesAnalytics y sesiones de levantamiento de requerimientos con el cliente final, hasta el diseño de arquitectura, construcción del backlog, desarrollo completo y despliegue en producción.
-Stack Tecnológico:
-
-Frontend: React para dashboard interactivo con mapas en tiempo real
-Backend: Node.js con APIs RESTful para procesamiento de geolocalización
-Base de Datos: MySQL para almacenamiento de coordenadas y métricas
-Cloud: AWS EC2 para hosting y escalabilidad
-Metodología: Scrum con iteraciones ágiles
-
-Implementación Técnica:
-
-Sistema de captura GPS con actualización cada 3 segundos por dispositivo móvil
-Arquitectura de microservicios para gestión de múltiples posiciones simultáneas
-Dashboard con mapas interactivos y visualización en tiempo real de toda la flota
-Algoritmo de cálculo de distancias entre puntos de solicitud y entrega
-Sistema de identificación única por camión para trazabilidad completa
-Integración con dispositivos móviles para captura automática de coordenadas
-
-Resultados:
-✅ Reducción del tiempo de acceso a datos operacionales de horas a segundos
-✅ MVP validado exitosamente cumpliendo todos los criterios establecidos
-✅ Despliegue exitoso en producción para uso de clientes finales
-✅ Justificación exitosa del financiamiento CORFO ante comité evaluador
-✅ Control efectivo de ubicaciones de entrega previniendo abuso de promociones
-✅ Monitoreo en tiempo real de flota completa con precisión GPS
-Impacto: La plataforma transformó completamente la operación de la empresa de gas, proporcionando visibilidad instantánea de su flota y permitiendo la validación automática de entregas. El éxito del MVP no solo resolvió la problemática del cliente sino que también validó el modelo de negocio de GeoGesAnalytics, asegurando la continuidad del financiamiento CORFO y estableciendo las bases para la expansión del producto.">
-            <img src="./src/modal2.webp" alt="Experiencia 2023">
+            <div class="card" data-project="1">
+                <img src="./src/modal1.webp" alt="Dashboard de gestión de usuarios de la plataforma Innoving 2030">
             </div>
-
-            <!-- Card 3 -->
-            <div class="card" 
-                data-img="./src/modal3.webp"
-                data-text="Sistema OCR de Reconocimiento Automático de Patentes en Tiempo Real
-
-Contexto: Desarrollé de forma autónoma un sistema completo de reconocimiento automático de patentes vehiculares para TecnoSecurityData, como proyecto de tesis durante 6 meses. El objetivo estratégico era posicionar a la empresa con una ventaja competitiva al contar con tecnología propia de monitoreo vehicular, independizándose de proveedores externos y creando un producto escalable para comercializar a múltiples clientes del sector seguridad.
-Desafío: Crear una solución integral que procesara streams de video RTSP en tiempo real, implementara reconocimiento óptico de caracteres con alta precisión, y proporcionara una plataforma web para consulta y análisis de datos históricos, todo optimizado para funcionar con hardware de cámaras de seguridad estándar.
-Rol y Responsabilidades: Actué como Ingeniero de Software e Investigador con responsabilidad completa del proyecto: desde el diseño de la arquitectura del sistema hasta la implementación de algoritmos de computer vision, desarrollo de la aplicación web y validación del producto final mediante reuniones periódicas con la empresa y supervisión académica.
-Stack Tecnológico:
-
-Backend: Python con EasyOCR y OpenCV para procesamiento de imágenes
-Computer Vision: Modelo de detección de caracteres + OCR especializado en patentes
-Base de Datos: PostgreSQL para almacenamiento de registros y consultas históricas
-Frontend: React para dashboard de consultas y visualización de datos
-Protocolo: Procesamiento de streams RTSP en tiempo real
-Metodología: Desarrollo iterativo con validaciones periódicas
-
-Implementación Técnica:
-
-Pipeline optimizado de procesamiento: definición de área de interés → captura de frames → detección de caracteres → OCR → validación de formato
-Sistema de dos etapas: modelo liviano de detección + modelo OCR especializado para eficiencia computacional
-Algoritmo de filtrado inteligente para validar estructura de patentes chilenas
-Captura temporal configurable para optimización de recursos
-API RESTful para consultas por fecha, rango temporal o patente específica
-Dashboard interactivo con funcionalidades de búsqueda y exportación de datos
-
-Resultados:
-✅ Precisión de reconocimiento del 68% en condiciones óptimas de hardware
-✅ Sistema de procesamiento en tiempo real completamente funcional
-✅ Plataforma web integral con capacidades de consulta y análisis histórico
-✅ Arquitectura escalable preparada para múltiples streams simultáneos
-✅ Producto finalizado con tecnología propietaria para ventaja competitiva
-✅ Independencia total de proveedores externos de tecnología OCR
-Impacto: El sistema estableció las bases tecnológicas para que TecnoSecurityData desarrollara su propia línea de productos de monitoreo vehicular, proporcionando una solución completa desde la captura hasta el análisis de datos. Aunque el producto requiere iteraciones adicionales para mejorar la precisión antes de su comercialización masiva, demostró la viabilidad técnica y económica de la solución, posicionando a la empresa para competir en el mercado de seguridad vehicular con tecnología propia.">
-            <img src="./src/modal3.webp" alt="Experiencia 2023">
+            <div class="card" data-project="2">
+                <img src="./src/modal2.webp" alt="Plataforma de monitoreo en tiempo real para flota de distribución de gas">
             </div>
+            <div class="card" data-project="3">
+                <img src="./src/modal3.webp" alt="Sistema OCR de reconocimiento automático de patentes vehiculares">
+            </div>
+        </div>
     </div>
 
-    <!-- Sección de habilidades (4.html) -->
     <div class="skills-section">
         <h2 class="section-title">Habilidades</h2>
         <div class="skills-container">
-            <!-- 16 cartas con imágenes locales -->
-            <div class="skill-card"><img src="./src/1.webp" alt="Habilidad"></div>
-            <div class="skill-card"><img src="./src/2.webp" alt="Habilidad"></div>
-            <div class="skill-card"><img src="./src/3.webp" alt="Habilidad"></div>
-            <div class="skill-card"><img src="./src/4.webp" alt="Habilidad"></div>
-            <div class="skill-card"><img src="./src/5.webp" alt="Habilidad"></div>
-            <div class="skill-card"><img src="./src/6.webp" alt="Habilidad"></div>
-            <div class="skill-card"><img src="./src/7.webp" alt="Habilidad"></div>
-            <div class="skill-card"><img src="./src/8.webp" alt="Habilidad"></div>
-            <div class="skill-card"><img src="./src/9.webp" alt="Habilidad"></div>
-            <div class="skill-card"><img src="./src/10.webp" alt="Habilidad"></div>
-            <div class="skill-card"><img src="./src/11.webp" alt="Habilidad"></div>
-            <div class="skill-card"><img src="./src/12.webp" alt="Habilidad"></div>
-            <div class="skill-card"><img src="./src/13.webp" alt="Habilidad"></div>
-            <div class="skill-card"><img src="./src/14.webp" alt="Habilidad"></div>
-            <div class="skill-card"><img src="./src/15.webp" alt="Habilidad"></div>
-            <div class="skill-card"><img src="./src/16.webp" alt="Habilidad"></div>
+            <div class="skill-card"><img src="./src/1.webp" alt="Habilidad" loading="lazy"></div>
+            <div class="skill-card"><img src="./src/2.webp" alt="Habilidad" loading="lazy"></div>
+            <div class="skill-card"><img src="./src/3.webp" alt="Habilidad" loading="lazy"></div>
+            <div class="skill-card"><img src="./src/4.webp" alt="Habilidad" loading="lazy"></div>
+            <div class="skill-card"><img src="./src/5.webp" alt="Habilidad" loading="lazy"></div>
+            <div class="skill-card"><img src="./src/6.webp" alt="Habilidad" loading="lazy"></div>
+            <div class="skill-card"><img src="./src/7.webp" alt="Habilidad" loading="lazy"></div>
+            <div class="skill-card"><img src="./src/8.webp" alt="Habilidad" loading="lazy"></div>
+            <div class="skill-card"><img src="./src/9.webp" alt="Habilidad" loading="lazy"></div>
+            <div class="skill-card"><img src="./src/10.webp" alt="Habilidad" loading="lazy"></div>
+            <div class="skill-card"><img src="./src/11.webp" alt="Habilidad" loading="lazy"></div>
+            <div class="skill-card"><img src="./src/12.webp" alt="Habilidad" loading="lazy"></div>
+            <div class="skill-card"><img src="./src/13.webp" alt="Habilidad" loading="lazy"></div>
+            <div class="skill-card"><img src="./src/14.webp" alt="Habilidad" loading="lazy"></div>
+            <div class="skill-card"><img src="./src/15.webp" alt="Habilidad" loading="lazy"></div>
+            <div class="skill-card"><img src="./src/16.webp" alt="Habilidad" loading="lazy"></div>
         </div>
     </div>
 
-    <!-- Modal para proyectos -->
     <div class="modal" id="myModal">
-    <span class="close" id="closeModal">&times;</span>
-    <div class="modal-content">
-        <img id="modalImg" src="" alt="">
-        <div class="modal-text-container">
-            <p id="modalText"></p>
+        <button class="close" id="closeModal" aria-label="Cerrar modal">&times;</button>
+        <div class="modal-content">
+            <img id="modalImg" src="" alt="">
+            <div class="modal-text-container" id="modalBody"></div>
         </div>
     </div>
-</div>
 
-    <!-- Overlay para habilidades -->
     <div class="overlay" id="overlay"></div>
 
     <div class="ia-perspective-section">
-    <h2 class="section-title">Mi Perspectiva sobre la IA en el Desarrollo</h2>
-    <div class="glass-card">
-        <p>Trabajo con IA como lo que realmente es: una herramienta para multiplicar capacidades, no reemplazar criterio.
-La uso para acelerar desarrollo de código repetitivo, pero las decisiones arquitectónicas y de diseño las tomo basándome en fundamentos sólidos que mantengo practicando constantemente.
-Esta combinación me permite ser más eficiente sin perder la esencia de lo que hace valioso a un desarrollador: pensar, analizar y crear soluciones robustas.</p>
+        <h2 class="section-title">Mi Perspectiva sobre la IA en el Desarrollo</h2>
+        <div class="glass-card">
+            <p>Trabajo con IA como lo que realmente es: una herramienta para multiplicar capacidades, no reemplazar criterio.
+            La uso para acelerar desarrollo de código repetitivo, pero las decisiones arquitectónicas y de diseño las tomo basándome en fundamentos sólidos que mantengo practicando constantemente.
+            Esta combinación me permite ser más eficiente sin perder la esencia de lo que hace valioso a un desarrollador: pensar, analizar y crear soluciones robustas.</p>
+        </div>
     </div>
-</div>
 
     <footer>
-        <p>© 2025 Rodrigo Ignacio Almonacid Sangmeister | rodcid.al@gmail.com | linkedin.com/in/rodrigo-almonacid-sangmeister-96b2b9b2 </p>
+        <div class="footer-links">
+            <a href="mailto:rodcid.al@gmail.com">rodcid.al@gmail.com</a> |
+            <a href="https://linkedin.com/in/rodrigo-almonacid-sangmeister-96b2b9b2" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </div>
+        <p>© 2025 Rodrigo Ignacio Almonacid Sangmeister</p>
     </footer>
 
     <script>
-        // Script para el círculo giratorio (2.html)
+        /* ============================================
+           DATOS DE PROYECTOS
+           ============================================ */
+        const projects = {
+            1: {
+                img: './src/modal1.webp',
+                imgAlt: 'Dashboard de gestión de usuarios - Innoving 2030',
+                title: 'Módulo de Gestión de Usuarios — Plataforma de Indicadores Académicos',
+                sections: [
+                    { heading: 'Contexto', body: 'Desarrollé, como parte de un equipo multidisciplinario de 30 personas, un sistema integral de gestión de usuarios para Innoving 2030, con el objetivo de digitalizar y optimizar su proceso de recolección y análisis de datos académicos. La plataforma necesitaba manejar diferentes perfiles (10-100 usuarios simultáneos) con roles específicos: recolectores de datos, analistas de métricas y administradores.' },
+                    { heading: 'Desafío', body: 'El cliente requería transformar un proceso manual y presencial de solicitud de datos académicos en una solución digital escalable que permitiera la gestión eficiente de diferentes niveles de acceso y la visualización de métricas en tiempo real.' },
+                    { heading: 'Rol', body: 'Asumí una doble función como Product Owner y Desarrollador Full Stack. Como PO, mantuve comunicación directa con el cliente, gestioné los requerimientos y prioricé el backlog del módulo. Como desarrollador, lideré un equipo de 5 personas implementando las funcionalidades core del sistema.' },
+                    { heading: 'Stack Tecnológico', list: [
+                        'Frontend: React para interfaces dinámicas y responsivas',
+                        'Backend: Node.js con APIs RESTful',
+                        'Base de Datos: MySQL',
+                        'Metodología: Scrum con sprints de 2 semanas'
+                    ]},
+                    { heading: 'Implementación', list: [
+                        'Sistema de autenticación y autorización basado en roles con múltiples niveles de acceso',
+                        'CRUD completo para gestión de usuarios y roles con validaciones avanzadas',
+                        'Cifrado seguro de contraseñas implementando best practices',
+                        'Dashboard personalizado según perfiles de usuario',
+                        'Integración de gráficos interactivos para seguimiento temporal de indicadores'
+                    ]},
+                    { heading: 'Resultados', list: [
+                        '✅ Entrega en tiempo y forma cumpliendo todas las especificaciones',
+                        '✅ Digitalización completa del proceso de recolección de datos',
+                        '✅ Eliminación de gestión presencial mediante sistema de enlaces directos',
+                        '✅ Centralización de métricas con visualización en tiempo real',
+                        '✅ Mejora significativa en la eficiencia operativa del cliente'
+                    ]}
+                ]
+            },
+            2: {
+                img: './src/modal2.webp',
+                imgAlt: 'Plataforma de monitoreo en tiempo real para flota de distribución de gas',
+                title: 'Plataforma de Monitoreo en Tiempo Real — Flota de Distribución de Gas',
+                sections: [
+                    { heading: 'Contexto', body: 'Lideré el desarrollo completo de una solución de software para GeoGesAnalytics, financiada con fondos CORFO, para resolver una problemática crítica de una empresa de distribución de gas con flota de 10-20 camiones. El desafío principal era prevenir el abuso de promociones por parte de los repartidores mediante el control preciso de ubicaciones de entrega.' },
+                    { heading: 'Desafío', body: 'Transformar un sistema manual de verificación de entregas que tomaba horas en procesar, en una solución de monitoreo en tiempo real que permitiera validar instantáneamente las entregas legítimas y calcular distancias entre puntos de solicitud y entrega.' },
+                    { heading: 'Rol', body: 'Actué como Ingeniero de Software Full Stack con responsabilidades end-to-end: desde reuniones iniciales con GeoGesAnalytics y sesiones de levantamiento de requerimientos con el cliente final, hasta el diseño de arquitectura, construcción del backlog, desarrollo completo y despliegue en producción.' },
+                    { heading: 'Stack Tecnológico', list: [
+                        'Frontend: React para dashboard interactivo con mapas en tiempo real',
+                        'Backend: Node.js con APIs RESTful para procesamiento de geolocalización',
+                        'Base de Datos: MySQL para almacenamiento de coordenadas y métricas',
+                        'Cloud: AWS EC2 para hosting y escalabilidad',
+                        'Metodología: Scrum con iteraciones ágiles'
+                    ]},
+                    { heading: 'Implementación', list: [
+                        'Sistema de captura GPS con actualización cada 3 segundos por dispositivo móvil',
+                        'Arquitectura de microservicios para gestión de múltiples posiciones simultáneas',
+                        'Dashboard con mapas interactivos y visualización en tiempo real de toda la flota',
+                        'Algoritmo de cálculo de distancias entre puntos de solicitud y entrega',
+                        'Sistema de identificación única por camión para trazabilidad completa'
+                    ]},
+                    { heading: 'Resultados', list: [
+                        '✅ Reducción del tiempo de acceso a datos operacionales de horas a segundos',
+                        '✅ MVP validado exitosamente cumpliendo todos los criterios establecidos',
+                        '✅ Despliegue exitoso en producción para uso de clientes finales',
+                        '✅ Justificación exitosa del financiamiento CORFO ante comité evaluador',
+                        '✅ Control efectivo de ubicaciones de entrega previniendo abuso de promociones'
+                    ]}
+                ]
+            },
+            3: {
+                img: './src/modal3.webp',
+                imgAlt: 'Sistema OCR de reconocimiento automático de patentes vehiculares',
+                title: 'Sistema OCR de Reconocimiento Automático de Patentes en Tiempo Real',
+                sections: [
+                    { heading: 'Contexto', body: 'Desarrollé de forma autónoma un sistema completo de reconocimiento automático de patentes vehiculares para TecnoSecurityData, como proyecto de tesis durante 6 meses. El objetivo estratégico era posicionar a la empresa con una ventaja competitiva al contar con tecnología propia de monitoreo vehicular, independizándose de proveedores externos.' },
+                    { heading: 'Desafío', body: 'Crear una solución integral que procesara streams de video RTSP en tiempo real, implementara reconocimiento óptico de caracteres con alta precisión, y proporcionara una plataforma web para consulta y análisis de datos históricos, todo optimizado para funcionar con hardware de cámaras de seguridad estándar.' },
+                    { heading: 'Rol', body: 'Actué como Ingeniero de Software e Investigador con responsabilidad completa del proyecto: desde el diseño de la arquitectura del sistema hasta la implementación de algoritmos de computer vision, desarrollo de la aplicación web y validación del producto final.' },
+                    { heading: 'Stack Tecnológico', list: [
+                        'Backend: Python con EasyOCR y OpenCV para procesamiento de imágenes',
+                        'Computer Vision: Modelo de detección de caracteres + OCR especializado en patentes',
+                        'Base de Datos: PostgreSQL para almacenamiento de registros y consultas históricas',
+                        'Frontend: React para dashboard de consultas y visualización de datos',
+                        'Protocolo: Procesamiento de streams RTSP en tiempo real'
+                    ]},
+                    { heading: 'Implementación', list: [
+                        'Pipeline de procesamiento: definición de área de interés → captura de frames → detección → OCR → validación',
+                        'Sistema de dos etapas: modelo liviano de detección + modelo OCR especializado para eficiencia',
+                        'Algoritmo de filtrado inteligente para validar estructura de patentes chilenas',
+                        'Captura temporal configurable para optimización de recursos',
+                        'API RESTful para consultas por fecha, rango temporal o patente específica',
+                        'Dashboard interactivo con funcionalidades de búsqueda y exportación de datos'
+                    ]},
+                    { heading: 'Resultados', list: [
+                        '✅ Precisión de reconocimiento del 68% con hardware de cámara estándar',
+                        '✅ Sistema de procesamiento en tiempo real completamente funcional',
+                        '✅ Plataforma web integral con capacidades de consulta y análisis histórico',
+                        '✅ Arquitectura escalable preparada para múltiples streams simultáneos',
+                        '✅ Producto finalizado con tecnología propietaria para ventaja competitiva',
+                        '✅ Independencia total de proveedores externos de tecnología OCR'
+                    ]}
+                ]
+            }
+        };
+
+        /* ============================================
+           CÍRCULO GIRATORIO
+           ============================================ */
         document.addEventListener('DOMContentLoaded', function() {
             const backFace = document.querySelector('.flipping-image-back');
-            const imageUrls = [
-                './src/frymeme.webp',
-                './src/catprogrammer.webp'
-            ];
+            const imageUrls = ['./src/frymeme.webp', './src/catprogrammer.webp'];
             let currentImageIndex = 0;
-            
-            // Establecer la primera imagen de reverso
+
             backFace.style.backgroundImage = `url('${imageUrls[0]}')`;
-            
-            // Alternar imágenes al hacer hover
+
             const imageContainer = document.querySelector('.image-container');
             imageContainer.addEventListener('mouseenter', function() {
-                // Cambiar a la siguiente imagen
                 currentImageIndex = (currentImageIndex + 1) % imageUrls.length;
                 backFace.style.backgroundImage = `url('${imageUrls[currentImageIndex]}')`;
             });
         });
 
-        // Script para los proyectos
-const modal = document.getElementById("myModal");
-const closeModal = document.getElementById("closeModal");
-const modalImg = document.getElementById("modalImg");
-const modalText = document.getElementById("modalText");
+        /* ============================================
+           MODAL DE PROYECTOS
+           ============================================ */
+        const modal = document.getElementById('myModal');
+        const closeModalBtn = document.getElementById('closeModal');
+        const modalImg = document.getElementById('modalImg');
+        const modalBody = document.getElementById('modalBody');
 
-document.querySelectorAll(".card").forEach(card => {
-    card.addEventListener("click", () => {
-        modalImg.src = card.dataset.img;
-        
-        // Formatea el texto con saltos de línea
-        const formattedText = card.dataset.text
-            .replace(/\n\n/g, '</p><p>') // Párrafos
-            .replace(/\n/g, '<br>');     // Saltos de línea
-        
-        modalText.innerHTML = `<p>${formattedText}</p>`;
-        modal.style.display = "block";
-        document.body.style.overflow = "hidden"; // Bloquea scroll del fondo
-    });
-});
+        function renderProject(id) {
+            const project = projects[id];
+            if (!project) return;
 
-closeModal.onclick = () => {
-    modal.style.display = "none";
-    document.body.style.overflow = "auto"; // Restaura scroll
-}
+            modalImg.src = project.img;
+            modalImg.alt = project.imgAlt;
 
-window.onclick = (e) => { 
-    if (e.target === modal) {
-        modal.style.display = "none";
-        document.body.style.overflow = "auto";
-    }
-}
-
-        // Script para las habilidades (4.html)
-        const cards = document.querySelectorAll(".skill-card");
-        const overlay = document.getElementById("overlay");
-        let zoomedCard = null;
-
-        cards.forEach(card => {
-            card.addEventListener("click", () => {
-                if (zoomedCard) return;
-                card.classList.add("zoomed");
-                overlay.style.display = "block";
-                zoomedCard = card;
+            let html = `<h3>${project.title}</h3>`;
+            project.sections.forEach(section => {
+                html += '<div class="modal-section">';
+                html += `<h4>${section.heading}</h4>`;
+                if (section.body) html += `<p>${section.body}</p>`;
+                if (section.list) {
+                    html += '<ul>';
+                    section.list.forEach(item => { html += `<li>${item}</li>`; });
+                    html += '</ul>';
+                }
+                html += '</div>';
             });
+            modalBody.innerHTML = html;
+        }
+
+        function openProjectModal(id) {
+            renderProject(id);
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeProjectModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('click', () => openProjectModal(card.dataset.project));
         });
 
-        overlay.addEventListener("click", () => {
+        closeModalBtn.addEventListener('click', closeProjectModal);
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeProjectModal();
+        });
+
+        /* ============================================
+           SKILL CARDS — zoom con transform animado
+           ============================================ */
+        const skillCards = document.querySelectorAll('.skill-card');
+        const overlay = document.getElementById('overlay');
+        let zoomedCard = null;
+
+        function expandSkill(card) {
+            if (zoomedCard) return;
+
+            // Posición actual de la carta en el viewport
+            const rect = card.getBoundingClientRect();
+            const viewportW = window.innerWidth;
+            const viewportH = window.innerHeight;
+
+            const cardCenterX = rect.left + rect.width / 2;
+            const cardCenterY = rect.top + rect.height / 2;
+
+            // Traslación para llevarla al centro del viewport
+            const translateX = viewportW / 2 - cardCenterX;
+            const translateY = viewportH / 2 - cardCenterY;
+
+            // Tamaño destino (responsive)
+            const targetSize = Math.min(280, viewportW * 0.75, viewportH * 0.75);
+            const scale = targetSize / rect.width;
+
+            card.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+            card.classList.add('expanded');
+            overlay.classList.add('active');
+            zoomedCard = card;
+        }
+
+        function collapseSkill() {
+            if (!zoomedCard) return;
+            zoomedCard.style.transform = '';
+            zoomedCard.classList.remove('expanded');
+            overlay.classList.remove('active');
+            zoomedCard = null;
+        }
+
+        skillCards.forEach(card => {
+            card.addEventListener('click', () => expandSkill(card));
+        });
+
+        overlay.addEventListener('click', collapseSkill);
+
+        // Recalcular si se redimensiona la ventana
+        window.addEventListener('resize', () => {
             if (zoomedCard) {
-                zoomedCard.classList.remove("zoomed");
-                overlay.style.display = "none";
-                zoomedCard = null;
+                const cardToRestore = zoomedCard;
+                collapseSkill();
+                setTimeout(() => expandSkill(cardToRestore), 50);
             }
+        });
+
+        /* ============================================
+           TECLA ESC
+           ============================================ */
+        document.addEventListener('keydown', (e) => {
+            if (e.key !== 'Escape') return;
+            if (modal.classList.contains('active')) closeProjectModal();
+            if (zoomedCard) collapseSkill();
         });
     </script>
 </body>
